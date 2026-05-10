@@ -1,5 +1,4 @@
 # Megamind
-### *Motor-imagery EEG-Guided Adaptive Motor Interface for Neural Diagnostics*
 <div align="center">
 <pre>
 ⠀⣞⢽⢪⢣⢣⢣⢫⡺⡵⣝⡮⣗⢷⢽⢽⢽⣮⡷⡽⣜⣜⢮⢺⣜⢷⢽⢝⡽⣝
