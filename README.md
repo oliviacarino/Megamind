@@ -29,14 +29,46 @@ The system detects patterns of neural activity associated with imagined movement
 
 Motor imagery therapy is a clinically validated approach to neurorehabilitation, but it's expensive, inaccessible, and often generic. Off-the-shelf EEG hardware costs *thousands of dollars*. Megamind is an attempt to: reduce expense by using low-cost hardware, use  AI-generated personalized scripts for training exercises, and provide real-time neural feedback. 
 
+- **Reduce cost** — full BOM under $100 using off-the-shelf components
+
+---
+
+## The Science (plain English)
+ 
+The circuit measures **alpha waves** — oscillations at 8–12 Hz produced by the motor cortex.
+ 
+| State | Alpha power | What it means |
+|---|---|---|
+| Relaxed / eyes closed | **High** | Patient is resting |
+| Imagining movement | **Low** (ERD) | Motor imagery is happening |
+ 
+This drop in alpha power is called **ERD (Event-Related Desynchronization)**. It's the same signal used in clinical BCI research. We detect it with a simple threshold on FFT band power — and use it to trigger exercises, animate the hand, and guide the Claude PT agent.
+
+---
+
+## Pipeline
+ 
+![Megamind EEG Pipeline](img/solution_intent.png)
+ 
+The pipeline has four layers:
+ 
+**INPUT** — Real EEG hardware (`--source real`) or synthetic simulation (`--source sim`). The `--source` flag is the *only* difference between demo and production mode. All downstream processing is identical.
+ 
+**SIGNAL** — ADC acquisition at 250 SPS → FFT bandpass filter isolating 8–12 Hz → ERD classifier (alpha power below threshold = motor imagery detected).
+ 
+**AI** — State detector feeds into Claude Sonnet 4 acting as a physical therapist, generating personalized guided imagery scripts that adapt in real time to the patient's neural state.
+ 
+**OUTPUT** — Live alpha waveform (cyan at rest, shifts to purple on ERD), single alpha power bar with ERD badge, animated hand exercise, neural pong, and Claude PT chat sidebar.
+ 
 ---
 
 ## Features
 
-- **DIY EEG/ECG acquisition circuit** — built with off-the-shelf components.
-- **Motor imagery classification** — detects event-related desynchronization (ERD) patterns in the mu and beta frequency bands associated with imagined movement
-- **AI-generated guided imagery** — an LLM generates personalized imagery scripts based on patient history, hobbies, and therapy goals
-- **Real-time neural feedback** — closes the loop between the patient's brain activity and the therapy session
+- **DIY EEG acquisition circuit** — instrumentation amp topology, captures microvolt-level alpha oscillations from the scalp
+- **Alpha ERD detection** — FFT-based classifier on the 8–12 Hz band; detects motor imagery via alpha suppression
+- **AI physical therapist** — Claude Sonnet 4 guides the session, responds to detected state changes, generates personalized imagery scripts
+- **Real-time visual feedback** — hand open/close animation and neural pong respond to brain signal; closes the loop between neural activity and therapy
+- **Real or simulated data** — single `--source` flag switches between live hardware and synthetic pipeline validation
 
 ---
 
@@ -52,6 +84,8 @@ The acquisition circuit is built around a standard instrumentation amplifier top
 | Resistors | 12Ω through 1MΩ (see BOM for full list) |
 | Electrodes | Gold cup (reusable) or disposable pre-gelled for prototyping |
 | Amplifier | Instrumentation amp — see circuit schematic |
+| MCU | Raspberry Pi 4 (I²C host) |
+| Electrodes | Gold cup (reusable) or disposable pre-gelled for prototyping |
 
 > **Electrode note:** Gold cup electrodes give cleaner signals and are recommended for repeated sessions with the same patient. Disposable pre-gelled electrodes are fine but not as conductive.
 
