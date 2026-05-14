@@ -78,13 +78,13 @@ The acquisition circuit uses a standard instrumentation amplifier topology to ca
 
 <br/>
 
-<img src="img/iteration_1.jpg" width="60%" />
-<p><em>Iteration 1 — initial amplifier topology test with electrode leads</em></p>
+<img src="img/node_mesh.jpg" width="60%" />
+<p><em>Node mesh diagram — signal path from electrodes through amp chain to ADC</em></p>
 
 <br/>
 
-<img src="img/node_mesh.jpg" width="60%" />
-<p><em>Node mesh diagram — signal path from electrodes through amp chain to ADC</em></p>
+<img src="img/iteration_1.jpg" width="60%" />
+<p><em>Iteration 1 — initial amplifier topology test with electrode leads</em></p>
 
 </div>
 
