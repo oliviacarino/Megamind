@@ -16,7 +16,7 @@
 ⠀⠀⠀⠀⠁⠇⠡⠩⡫⢿⣝⡻⡮⣒⢽⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 </pre>
 
-**A $50 DIY EEG + AI physical therapist for traumatic brain injury motor rehabilitation.**
+**A ~$100 DIY EEG + AI physical therapist for traumatic brain injury motor rehabilitation.**
 
 </div>
 
@@ -66,6 +66,27 @@ The acquisition circuit uses a standard instrumentation amplifier topology to ca
 | Electrodes | Gold cup or disposable pre-gelled | O2–Fp2 bipolar placement, left mastoid ground |
 | Capacitors | 10nF, 20nF ceramic; 100nF, 220nF tantalum; 1µF, 10µF electrolytic | |
 | Resistors | 12Ω through 1MΩ | See BOM for full list |
+
+### Circuit Photos
+
+<div align="center">
+
+| Final EEG Assembly | Final EEG Circuit |
+|:---:|:---:|
+| <img src="img/final_setup.jpg" width="100%" /> | <img src="img/iteration_2.jpg" width="100%" /> |
+| *ADS1115, AD622ANZ instrumentation amp, and TL084 op-amp staged on breadboard* | *Refined gain staging and power supply decoupling* |
+
+<br/>
+
+<img src="img/iteration_1.jpg" width="60%" />
+<p><em>Iteration 1 — initial amplifier topology test with electrode leads</em></p>
+
+<br/>
+
+<img src="img/node_mesh.jpg" width="60%" />
+<p><em>Node mesh diagram — signal path from electrodes through amp chain to ADC</em></p>
+
+</div>
 
 **Electrode placement:** O2–Fp2 bipolar, left mastoid ground. Targets occipital alpha — the dominant signal visible with a single-channel DIY EEG circuit.
 
